@@ -1,5 +1,2 @@
-class ApplicationController < ActionController::API
-  def index 
-    render json: Menu.all
-  end
+class ApplicationController < ActionController::API 
 end
