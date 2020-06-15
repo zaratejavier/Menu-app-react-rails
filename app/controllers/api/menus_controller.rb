@@ -8,7 +8,12 @@ class Api::MenusController < ApplicationController
     if menu.save
       render json: menu
     else
-      render json: {errors}
+      render json: {errors: menu.errors}, status: :unproccessable_entity
     end
+  end
+
+  private 
+  def item_params
+    params.require(:menu).permit(:name)
   end
 end
