@@ -1,7 +1,7 @@
 import React from "react";
 import { Button, Icon } from "semantic-ui-react";
 
-const Menu = ({ name, id, deleteMenu }) => {
+const Menu = ({ name, id, deleteMenu, updateMenu }) => {
   return (
     <div style={styles.flex} className="ui card">
       <h1 className="header">{name}</h1>
@@ -12,6 +12,15 @@ const Menu = ({ name, id, deleteMenu }) => {
         onClick={() => deleteMenu(id)}
       >
         <Icon name="trash" />
+      </Button>
+
+      <Button
+        icon
+        color="blue"
+        size="tiny"
+        onClick={() => updateMenu(id)}
+      >
+        <Icon name= "pencil alternate"/>
       </Button>
     </div>
   );

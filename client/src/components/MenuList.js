@@ -1,7 +1,7 @@
 import React from "react"
 import Menu from './Menu'
 
-const MenuList = ({menus, deleteMenu}) => {
+const MenuList = ({menus, deleteMenu, updateMenu}) => {
   return(
     <div>
       {menus.map((menu) => {
@@ -9,6 +9,7 @@ const MenuList = ({menus, deleteMenu}) => {
           <Menu 
            key={menu.id}
            deleteMenu={deleteMenu}
+           updateMenu={updateMenu}
            {...menu} 
           />
         )

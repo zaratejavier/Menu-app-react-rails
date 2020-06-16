@@ -1,4 +1,6 @@
 class Api::MenusController < ApplicationController
+  before_action :set_menu, only: [:show, :update, :destroy]
+
   def index
     render json: Menu.all
   end
@@ -12,17 +14,24 @@ class Api::MenusController < ApplicationController
     end
   end
 
-  # def update
-  #   menu = Item.find(params[:id])
-  #   item.update(complete: !item.complete)
-  #   render json: item
-  # end
+  def update
+    if @menu.update(menu_params)
+      render json: @menu
+    else
+      render json: menu.errors, status: 422
+    end 
+  end
+
 
   def destroy
     render json: Menu.find(params[:id]).destroy
   end
 
   private
+
+  def set_menu
+    @menu = Menu.find(params[:id])
+  end
 
   def menu_params
     params.require(:menu).permit(:name)

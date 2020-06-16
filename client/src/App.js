@@ -40,6 +40,11 @@ function App() {
       });
   }
 
+  async function updateMenu(id){
+    let {data} = await axios.put(`/api/menus/${id}`)
+    setMenus(menus.map((m) => (m.id !== data.id ? m : data)))
+  }
+
 
   return (
     <div className="App">
@@ -47,7 +52,7 @@ function App() {
       {/* we are adding the todoItem to the menu form */}
       <MenuForm addItem={addItem}  />
       {/* gets the menus and passes them to Menu list component  */}
-      <MenuList menus={menus} deleteMenu={deleteMenu}/>  
+      <MenuList menus={menus} deleteMenu={deleteMenu} updateMenu={updateMenu}/>  
       
 
     </div>
