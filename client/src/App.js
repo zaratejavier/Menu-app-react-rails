@@ -27,15 +27,27 @@ function App() {
       console.log(err)
     }
   }
-  
+
+  function deleteMenu(id) {
+    axios
+      .delete(`/api/menus/${id}`)
+      .then((res) => {
+        const filterMenu = menus.filter((m) => m.id !== res.data.id);
+        setMenus(filterMenu);
+      })
+      .catch((err) => {
+        console.log(err);
+      });
+  }
+
 
   return (
     <div className="App">
       <h1>Menu</h1>
       {/* we are adding the todoItem to the menu form */}
-      <MenuForm addItem={addItem}/>
+      <MenuForm addItem={addItem}  />
       {/* gets the menus and passes them to Menu list component  */}
-      <MenuList menus={menus}/>  
+      <MenuList menus={menus} deleteMenu={deleteMenu}/>  
       
 
     </div>
